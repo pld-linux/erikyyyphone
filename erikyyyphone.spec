@@ -2,8 +2,8 @@ Summary:	Voice over IP
 Name:		erikyyyphone
 Version:	1.0.0
 Release:	1
-Group:		Applications/Sound	
-Group(pl):	Aplikacje/D¼wiêk
+Group:		Applications/Communications
+Group(pl):	Aplikacje/Komunikacja
 License:	GPL
 Source0:	http://www.erikyyy.de/erikyyyphone/%{name}-%{version}.tar.gz
 Patch0:		%{name}-make.patch
@@ -19,7 +19,7 @@ Voice over IP
 
 %build
 automake
-CPPFLAGS="-I/usr/include/ncurses" ; export CPPFLAGS
+CPPFLAGS="-I%{_includedir}/ncurses" ; export CPPFLAGS
 %configure
 %{__make}
 
