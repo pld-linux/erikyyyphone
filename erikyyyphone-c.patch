@@ -1,0 +1,140 @@
+diff -urN erikyyyphone-1.0.1.orig/acinclude.m4 erikyyyphone-1.0.1/acinclude.m4
+--- erikyyyphone-1.0.1.orig/acinclude.m4	2000-05-12 07:28:24.000000000 +0200
++++ erikyyyphone-1.0.1/acinclude.m4	2003-08-19 19:29:45.000000000 +0200
+@@ -123,11 +123,7 @@
+   YYY_LDFLAGS="$YYY_LDFLAGS -s"
+ fi
+ 
+-if test "$yyynowarnerror" = "yes"; then
+-  YYY_CXXFLAGS="$YYY_CXXFLAGS -Wall"
+-else
+-  YYY_CXXFLAGS="$YYY_CXXFLAGS -Wall -Werror"
+-fi
++YYY_CXXFLAGS="$YYY_CXXFLAGS -Wall"
+ 
+ ])
+ 
+diff -urN erikyyyphone-1.0.1.orig/src/CC_oberfl.C erikyyyphone-1.0.1/src/CC_oberfl.C
+--- erikyyyphone-1.0.1.orig/src/CC_oberfl.C	1999-04-20 23:18:56.000000000 +0200
++++ erikyyyphone-1.0.1/src/CC_oberfl.C	2003-08-19 19:28:14.000000000 +0200
+@@ -30,7 +30,7 @@
+ 
+ #include <stdlib.h>
+ #include <stdio.h>
+-
++#include <string.h>
+ 
+ static char *editstring;
+ static int recordstat;
+diff -urN erikyyyphone-1.0.1.orig/src/Ccommon.C erikyyyphone-1.0.1/src/Ccommon.C
+--- erikyyyphone-1.0.1.orig/src/Ccommon.C	1996-12-22 20:09:17.000000000 +0100
++++ erikyyyphone-1.0.1/src/Ccommon.C	2003-08-19 19:29:58.000000000 +0200
+@@ -25,6 +25,7 @@
+ #include "fatal.H"
+ #include "erikyyylist.H"
+ #include <stdlib.h>
++#include <string.h>
+ 
+ #define MODE_init1 200
+ #define MODE_serverready 201
+diff -urN erikyyyphone-1.0.1.orig/src/clientconnection.C erikyyyphone-1.0.1/src/clientconnection.C
+--- erikyyyphone-1.0.1.orig/src/clientconnection.C	1996-12-23 10:37:45.000000000 +0100
++++ erikyyyphone-1.0.1/src/clientconnection.C	2003-08-19 19:31:06.000000000 +0200
+@@ -30,6 +30,7 @@
+ #include <stdlib.h>
+ #include <unistd.h>
+ #include <stdio.h>
++#include <string.h>
+ 
+ liste <clientconnection> *clientconnectionlist;
+ liste <int32> *clientallowancelist;
+diff -urN erikyyyphone-1.0.1.orig/src/servermain.C erikyyyphone-1.0.1/src/servermain.C
+--- erikyyyphone-1.0.1.orig/src/servermain.C	2000-09-19 18:09:15.000000000 +0200
++++ erikyyyphone-1.0.1/src/servermain.C	2003-08-19 19:30:43.000000000 +0200
+@@ -42,6 +42,7 @@
+ #include <fcntl.h>
+ #include <sys/ioctl.h>
+ #include <sys/resource.h>
++#include <string.h>
+ 
+ int main(int argc,char **argv)
+ {
+diff -urN erikyyyphone-1.0.1.orig/src/inconnection.C erikyyyphone-1.0.1/src/inconnection.C
+--- erikyyyphone-1.0.1.orig/src/inconnection.C	1996-12-23 10:22:30.000000000 +0100
++++ erikyyyphone-1.0.1/src/inconnection.C	2003-08-27 23:43:55.000000000 +0200
+@@ -30,7 +30,7 @@
+ #include "warter.H"
+ #include <stdlib.h>
+ #include <stdio.h>
+-
++#include <string.h>
+ 
+ liste<inconnection> *inconnectionlist;
+ 
+diff -urN erikyyyphone-1.0.1.orig/src/outconnection.C erikyyyphone-1.0.1/src/outconnection.C
+--- erikyyyphone-1.0.1.orig/src/outconnection.C	1996-12-22 10:29:53.000000000 +0100
++++ erikyyyphone-1.0.1/src/outconnection.C	2003-08-27 23:44:12.000000000 +0200
+@@ -32,6 +32,7 @@
+ #include <stdlib.h>
+ #include <netinet/in.h>
+ #include <stdio.h>
++#include <string.h>
+ 
+ #define MODE_init 900
+ #define MODE_serverready 901
+diff -urN erikyyyphone-1.0.1.orig/src/sound.C erikyyyphone-1.0.1/src/sound.C
+--- erikyyyphone-1.0.1.orig/src/sound.C	2000-09-19 18:22:42.000000000 +0200
++++ erikyyyphone-1.0.1/src/sound.C	2003-08-27 23:52:17.000000000 +0200
+@@ -68,14 +68,14 @@
+     gsmsamples[u]=a;
+   };
+   
+-  my_gsm_encode(gsmhandle, gsmsamples+160*0, (gsm_frame)(dest+33*0));
+-  my_gsm_encode(gsmhandle, gsmsamples+160*1, (gsm_frame)(dest+33*1));
+-  my_gsm_encode(gsmhandle, gsmsamples+160*2, (gsm_frame)(dest+33*2));
+-  my_gsm_encode(gsmhandle, gsmsamples+160*3, (gsm_frame)(dest+33*3));
+-  my_gsm_encode(gsmhandle, gsmsamples+160*4, (gsm_frame)(dest+33*4));
+-  my_gsm_encode(gsmhandle, gsmsamples+160*5, (gsm_frame)(dest+33*5));
+-  my_gsm_encode(gsmhandle, gsmsamples+160*6, (gsm_frame)(dest+33*6));
+-  my_gsm_encode(gsmhandle, gsmsamples+160*7, (gsm_frame)(dest+33*7));
++  my_gsm_encode(gsmhandle, gsmsamples+160*0, (gsm_byte*)(dest+33*0));
++  my_gsm_encode(gsmhandle, gsmsamples+160*1, (gsm_byte*)(dest+33*1));
++  my_gsm_encode(gsmhandle, gsmsamples+160*2, (gsm_byte*)(dest+33*2));
++  my_gsm_encode(gsmhandle, gsmsamples+160*3, (gsm_byte*)(dest+33*3));
++  my_gsm_encode(gsmhandle, gsmsamples+160*4, (gsm_byte*)(dest+33*4));
++  my_gsm_encode(gsmhandle, gsmsamples+160*5, (gsm_byte*)(dest+33*5));
++  my_gsm_encode(gsmhandle, gsmsamples+160*6, (gsm_byte*)(dest+33*6));
++  my_gsm_encode(gsmhandle, gsmsamples+160*7, (gsm_byte*)(dest+33*7));
+ };
+ 
+ 
+@@ -83,21 +83,21 @@
+ 
+ void SOUND_uncompressgsm(char *dest, char *src)
+ {
+-  if (my_gsm_decode(gsmhandle, (gsm_frame)(src+33*0), gsmsamples+160*0)<0)
++  if (my_gsm_decode(gsmhandle, (gsm_byte*)(src+33*0), gsmsamples+160*0)<0)
+     fatalfehler("SOUND_uncompressgsm: gsm_decode failed :( (0)");
+-  if (my_gsm_decode(gsmhandle, (gsm_frame)(src+33*1), gsmsamples+160*1)<0)
++  if (my_gsm_decode(gsmhandle, (gsm_byte*)(src+33*1), gsmsamples+160*1)<0)
+     fatalfehler("SOUND_uncompressgsm: gsm_decode failed :( (1)");
+-  if (my_gsm_decode(gsmhandle, (gsm_frame)(src+33*2), gsmsamples+160*2)<0)
++  if (my_gsm_decode(gsmhandle, (gsm_byte*)(src+33*2), gsmsamples+160*2)<0)
+     fatalfehler("SOUND_uncompressgsm: gsm_decode failed :( (2)");
+-  if (my_gsm_decode(gsmhandle, (gsm_frame)(src+33*3), gsmsamples+160*3)<0)
++  if (my_gsm_decode(gsmhandle, (gsm_byte*)(src+33*3), gsmsamples+160*3)<0)
+     fatalfehler("SOUND_uncompressgsm: gsm_decode failed :( (3)");
+-  if (my_gsm_decode(gsmhandle, (gsm_frame)(src+33*4), gsmsamples+160*4)<0)
++  if (my_gsm_decode(gsmhandle, (gsm_byte*)(src+33*4), gsmsamples+160*4)<0)
+     fatalfehler("SOUND_uncompressgsm: gsm_decode failed :( (0)");
+-  if (my_gsm_decode(gsmhandle, (gsm_frame)(src+33*5), gsmsamples+160*5)<0)
++  if (my_gsm_decode(gsmhandle, (gsm_byte*)(src+33*5), gsmsamples+160*5)<0)
+     fatalfehler("SOUND_uncompressgsm: gsm_decode failed :( (1)");
+-  if (my_gsm_decode(gsmhandle, (gsm_frame)(src+33*6), gsmsamples+160*6)<0)
++  if (my_gsm_decode(gsmhandle, (gsm_byte*)(src+33*6), gsmsamples+160*6)<0)
+     fatalfehler("SOUND_uncompressgsm: gsm_decode failed :( (2)");
+-  if (my_gsm_decode(gsmhandle, (gsm_frame)(src+33*7), gsmsamples+160*7)<0)
++  if (my_gsm_decode(gsmhandle, (gsm_byte*)(src+33*7), gsmsamples+160*7)<0)
+     fatalfehler("SOUND_uncompressgsm: gsm_decode failed :( (3)");
+ 
+   for (int u=0;u<ANZ_SAMPLES_PRO_GSM;u++) {
