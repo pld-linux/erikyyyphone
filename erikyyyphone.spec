@@ -1,13 +1,15 @@
 Summary:	Voice over IP
 Summary(pl):	G³os po IP
 Name:		erikyyyphone
-Version:	1.0.0
+Version:	1.0.1
 Release:	1
 Group:		Applications/Communications
 License:	GPL
 Source0:	http://www.erikyyy.de/erikyyyphone/%{name}-%{version}.tar.gz
-# Source0-md5:	73f970392906a0bbadae025758c2faca
+# Source0-md5:	1d8b3327d158e81e28ebe89550c236fe
 Patch0:		%{name}-make.patch
+Patch1:		%{name}-ac.patch
+Patch2:		%{name}-c.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libgsm-devel
@@ -22,14 +24,17 @@ G³os po IP.
 %prep
 %setup  -q
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
 rm -f missing
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 CPPFLAGS="-I%{_includedir}/ncurses" ; export CPPFLAGS
-%configure
+%configure2_13
 %{__make}
 
 %install
