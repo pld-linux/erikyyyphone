@@ -4,8 +4,6 @@ Name:		erikyyyphone
 Version:	1.0.0
 Release:	1
 Group:		Applications/Communications
-Group(de):	Applikationen/Kommunikation
-Group(pl):	Aplikacje/Komunikacja
 License:	GPL
 Source0:	http://www.erikyyy.de/erikyyyphone/%{name}-%{version}.tar.gz
 Patch0:		%{name}-make.patch
