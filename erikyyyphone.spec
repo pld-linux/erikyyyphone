@@ -7,6 +7,7 @@ Group:		Applications/Communications
 License:	GPL
 Source0:	http://www.erikyyy.de/erikyyyphone/%{name}-%{version}.tar.gz
 # Source0-md5:	1d8b3327d158e81e28ebe89550c236fe
+URL:		http://www.erikyyy.de/erikyyyphone/
 Patch0:		%{name}-make.patch
 Patch1:		%{name}-ac.patch
 Patch2:		%{name}-c.patch
