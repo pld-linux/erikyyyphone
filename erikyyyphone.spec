@@ -23,7 +23,7 @@ G³os po IP.
 
 %build
 aclocal
-automake -a -c
+automake -a -c -f
 CPPFLAGS="-I%{_includedir}/ncurses" ; export CPPFLAGS
 %configure
 %{__make}
