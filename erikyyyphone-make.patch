@@ -1,0 +1,29 @@
+diff -ruN erikyyyphone-1.0.0.orig/src/Makefile.am erikyyyphone-1.0.0/src/Makefile.am
+--- erikyyyphone-1.0.0.orig/src/Makefile.am	Thu Apr 29 18:31:22 1999
++++ erikyyyphone-1.0.0/src/Makefile.am	Tue Aug 29 12:56:41 2000
+@@ -1,13 +1,8 @@
+ ## Process this file with automake to produce Makefile.in
+ 
+-dist-hook:
+-	mkdir $(distdir)/gsm
+-	cd gsm;make clean;cd ..
+-	cp -a gsm/. $(distdir)/gsm
+-
+ bin_PROGRAMS=erikyyyphone erikyyyphoneserver
+ 
+-INCLUDES=-Dkickwarn
++INCLUDES=-Dkickwarn $(CURSES_INCLUDEDIR)
+ 
+ erikyyyphone_SOURCES=\
+   allgtypedef.H erikyyylist.H version.H \
+@@ -39,9 +34,5 @@
+   msgarten.C msgarten.H \
+   gsmwrapper.c gsmwrapper.h
+ 
+-erikyyyphoneserver_LDADD=-Lgsm/lib -lgsm
+-
+-erikyyyphoneserver_DEPENDENCIES=gsm/lib/libgsm.a
++erikyyyphoneserver_LDADD=-lgsm
+ 
+-gsm/lib/libgsm.a:
+-	cd gsm;make&&cd ..
