@@ -9,8 +9,8 @@ Group(pl):	Aplikacje/Komunikacja
 License:	GPL
 Source0:	http://www.erikyyy.de/erikyyyphone/%{name}-%{version}.tar.gz
 Patch0:		%{name}-make.patch
-BuildRequires:	libgsm
 BuildRequires:	automake
+BuildRequires:	libgsm-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -24,6 +24,7 @@ G³os po IP.
 %patch0 -p1
 
 %build
+aclocal
 automake -a -c
 CPPFLAGS="-I%{_includedir}/ncurses" ; export CPPFLAGS
 %configure
