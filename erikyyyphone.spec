@@ -6,6 +6,7 @@ Release:	1
 Group:		Applications/Communications
 License:	GPL
 Source0:	http://www.erikyyy.de/erikyyyphone/%{name}-%{version}.tar.gz
+# Source0-md5:	73f970392906a0bbadae025758c2faca
 Patch0:		%{name}-make.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
