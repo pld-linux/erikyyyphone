@@ -1,24 +1,30 @@
 Summary:	Voice over IP
+Summary(pl):	G³os po IP
 Name:		erikyyyphone
 Version:	1.0.0
 Release:	1
 Group:		Applications/Communications
+Group(de):	Applikationen/Kommunikation
 Group(pl):	Aplikacje/Komunikacja
 License:	GPL
 Source0:	http://www.erikyyy.de/erikyyyphone/%{name}-%{version}.tar.gz
 Patch0:		%{name}-make.patch
-BuildPrereq:	libgsm
+BuildRequires:	libgsm
+BuildRequires:	automake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Voice over IP
+Voice over IP.
+
+%description -l pl
+G³os po IP.
 
 %prep
 %setup  -q
 %patch0 -p1
 
 %build
-automake
+automake -a -c
 CPPFLAGS="-I%{_includedir}/ncurses" ; export CPPFLAGS
 %configure
 %{__make}
