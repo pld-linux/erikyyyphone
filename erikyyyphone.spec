@@ -7,6 +7,7 @@ Group:		Applications/Communications
 License:	GPL
 Source0:	http://www.erikyyy.de/erikyyyphone/%{name}-%{version}.tar.gz
 Patch0:		%{name}-make.patch
+BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libgsm-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -22,7 +23,9 @@ G³os po IP.
 %patch0 -p1
 
 %build
-aclocal
+rm -f missing
+%{__aclocal}
+%{__autoconf}
 %{__automake}
 CPPFLAGS="-I%{_includedir}/ncurses" ; export CPPFLAGS
 %configure
@@ -31,8 +34,6 @@ CPPFLAGS="-I%{_includedir}/ncurses" ; export CPPFLAGS
 %install
 rm -rf $RPM_BUILD_ROOT
 
-gzip -9nf AUTHORS README TODO
-
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 %clean
@@ -40,5 +41,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc {AUTHORS,README,TODO}.gz
+%doc AUTHORS README TODO
 %attr(755,root,root) %{_bindir}/*
