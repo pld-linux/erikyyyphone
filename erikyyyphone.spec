@@ -33,9 +33,9 @@ rm -f missing
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-CPPFLAGS="-I%{_includedir}/ncurses" ; export CPPFLAGS
-%configure2_13
-%{__make}
+CPPFLAGS="-I%{_includedir}/ncurses"; export CPPFLAGS
+%configure
+%{__make} CXXFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
