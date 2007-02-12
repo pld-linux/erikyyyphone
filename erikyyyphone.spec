@@ -1,5 +1,5 @@
 Summary:	Voice over IP
-Summary(pl):	G³os po IP
+Summary(pl.UTF-8):   GÅ‚os po IP
 Name:		erikyyyphone
 Version:	1.0.1
 Release:	1
@@ -19,8 +19,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Voice over IP.
 
-%description -l pl
-G³os po IP.
+%description -l pl.UTF-8
+GÅ‚os po IP.
 
 %prep
 %setup  -q
