@@ -1,5 +1,5 @@
 Summary:	Voice over IP
-Summary(pl.UTF-8):   Głos po IP
+Summary(pl.UTF-8):	Głos po IP
 Name:		erikyyyphone
 Version:	1.0.1
 Release:	1
